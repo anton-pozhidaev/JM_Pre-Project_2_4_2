@@ -1,10 +1,9 @@
-package study.jm.pp231.dao;
+package study.jm.pp242.dao;
 
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
-import study.jm.pp231.model.User;
+import study.jm.pp242.model.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

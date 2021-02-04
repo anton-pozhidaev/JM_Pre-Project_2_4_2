@@ -1,10 +1,10 @@
-package study.jm.pp231.service;
+package study.jm.pp242.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import study.jm.pp231.dao.UserDao;
-import study.jm.pp231.model.User;
+import study.jm.pp242.dao.UserDao;
+import study.jm.pp242.model.User;
 
 import java.util.ArrayList;
 import java.util.List;

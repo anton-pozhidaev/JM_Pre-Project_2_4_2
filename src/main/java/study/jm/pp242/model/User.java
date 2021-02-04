@@ -1,4 +1,4 @@
-package study.jm.pp231.model;
+package study.jm.pp242.model;
 
 import javax.persistence.*;
 

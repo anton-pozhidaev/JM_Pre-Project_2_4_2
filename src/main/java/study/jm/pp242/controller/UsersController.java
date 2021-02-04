@@ -1,11 +1,11 @@
-package study.jm.pp231.controller;
+package study.jm.pp242.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import study.jm.pp231.model.User;
-import study.jm.pp231.service.UserService;
+import study.jm.pp242.model.User;
+import study.jm.pp242.service.UserService;
 
 @Controller
 @RequestMapping("/users")
@@ -35,30 +35,12 @@ public class UsersController {
     public String newUser(@ModelAttribute("user") User user) {
         return "users/new";
     }
-    /*
-        @GetMapping("/new")
-        public String newUser(Model model) {
-            model.addAttribute("user", new User());
-            return "users/new";
-        }
-    */
 
     @PostMapping
     public String create(@ModelAttribute("user") User user) {
         userService.add(user);
         return "redirect:/users";
     }
-    /*
-        @PostMapping
-        public String create(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName,
-                             @RequestParam("email") String email, @RequestParam("birthday") String birthday,
-                             @RequestParam("address") String address) {
-
-            User user = new User(firstName, lastName, email, birthday, address);
-            userService.add(user);
-            return "redirect:/users";
-        }
-    */
 
     @GetMapping("/{id}/edit")
     public String edit(Model model, @PathVariable("id") long id) {

@@ -1,4 +1,4 @@
-package study.jm.pp231.config;
+package study.jm.pp242.config;
 
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;

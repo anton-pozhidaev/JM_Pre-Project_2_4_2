@@ -1,10 +1,10 @@
-package study.jm.pp231.dao;
+package study.jm.pp242.service;
 
-import study.jm.pp231.model.User;
+import study.jm.pp242.model.User;
 
 import java.util.List;
 
-public interface UserDao {
+public interface UserService {
 
     void add(User user);
 
@@ -18,4 +18,6 @@ public interface UserDao {
 
     void cleanUsersTable();
 
+    void addInitUsersToDB();
 }
+

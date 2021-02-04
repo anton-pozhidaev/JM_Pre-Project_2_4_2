@@ -1,4 +1,4 @@
-package study.jm.pp231.config;
+package study.jm.pp242.config;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -13,7 +13,7 @@ import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("study.jm.pp231")
+@ComponentScan("study.jm.pp242")
 public class WebConfig implements WebMvcConfigurer {
 
     private final ApplicationContext applicationContext;
