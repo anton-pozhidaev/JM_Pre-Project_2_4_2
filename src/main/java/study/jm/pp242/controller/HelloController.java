@@ -22,9 +22,8 @@ public class HelloController {
         return "index";
     }
 
-    @RequestMapping(value = "login", method = RequestMethod.GET)
+    @GetMapping(value = "/login")
     public String loginPage() {
         return "login";
     }
-
 }

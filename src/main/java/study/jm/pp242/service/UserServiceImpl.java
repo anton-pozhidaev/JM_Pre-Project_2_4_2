@@ -4,10 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import study.jm.pp242.dao.UserDao;
+import study.jm.pp242.model.Role;
 import study.jm.pp242.model.User;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -23,13 +23,20 @@ public class UserServiceImpl implements UserService {
     @Override
     public void addInitUsersToDB() {
         List<User> initUsersList = new ArrayList<>();
+        Set<Role> userRoleOnly = Collections.singleton(new Role("ROLE_USER"));
+        Set<Role> userAndAdminRoles = new HashSet<>(Arrays.asList(new Role("ROLE_USER"), new Role ("ROLE_ADMIN")));
 
         userDao.cleanUsersTable();
-        initUsersList.add(new User("Vladimir", "Putin", "putya@mainbunker.ru", "13-12-19xx", "USSR, Popamira 123"));
-        initUsersList.add(new User("Dmitriy", "Peskov", "pesok@kremlin.ru", "13-12-19xx", "USSR, Popamira 456"));
-        initUsersList.add(new User("Uasya", "Vatnikov", "vata@mail.ru", "13-12-19xx", "USSR, Popamira 789"));
-        initUsersList.add(new User("Alexey", "Navalniy", "leha@better-future.ru", "13-12-19xx", "USSR, Moscow"));
-        initUsersList.add(new User("Vladimir", "Solovyov", "pomet@trash.ru", "13-12-19xx", "USSR, Popamira 666"));
+        initUsersList.add(new User("Vladimir", "Putin", "putya@mainbunker.ru", "13-12-19xx", "USSR, Popamira 123"
+                , "vvp", "{bcrypt}$2y$12$./Fk/mWc49gs0xdJjazB4.DSmaI7K79/mVcXQcR3QPY2gQrzsiGNu", userAndAdminRoles));
+        initUsersList.add(new User("Dmitriy", "Peskov", "pesok@kremlin.ru", "13-12-19xx", "USSR, Popamira 456"
+                , "pesok", "{bcrypt}$2y$12$./Fk/mWc49gs0xdJjazB4.DSmaI7K79/mVcXQcR3QPY2gQrzsiGNu", userRoleOnly));
+        initUsersList.add(new User("Uasya", "Vatnikov", "vata@mail.ru", "13-12-19xx", "USSR, Popamira 789"
+                , "vata", "{bcrypt}$2y$12$./Fk/mWc49gs0xdJjazB4.DSmaI7K79/mVcXQcR3QPY2gQrzsiGNu", userRoleOnly));
+        initUsersList.add(new User("Alexey", "Navalniy", "leha@better-future.ru", "13-12-19xx", "USSR, Moscow"
+                , "leha", "{bcrypt}$2y$12$./Fk/mWc49gs0xdJjazB4.DSmaI7K79/mVcXQcR3QPY2gQrzsiGNu", userAndAdminRoles));
+        initUsersList.add(new User("Vladimir", "Solovyov", "pomet@trash.ru", "13-12-19xx", "USSR, Popamira 666"
+                , "pomet", "{bcrypt}$2y$12$./Fk/mWc49gs0xdJjazB4.DSmaI7K79/mVcXQcR3QPY2gQrzsiGNu", userRoleOnly));
         for (User user : initUsersList) {
             userDao.add(user);
         }

@@ -3,6 +3,7 @@ package study.jm.pp242.dao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import study.jm.pp242.model.User;
 
 import javax.persistence.EntityManager;
@@ -23,9 +24,9 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void add(User user) {
         EntityManager em = entityManagerFactory.createEntityManager();
-        em.getTransaction().begin();
+//        em.getTransaction().begin();
         em.persist(user);
-        em.getTransaction().commit();
+//        em.getTransaction().commit();
     }
 
     @Override
@@ -34,6 +35,19 @@ public class UserDaoImpl implements UserDao {
         em.getTransaction().begin();
 
         User usr = em.find(User.class, id);
+
+        em.getTransaction().commit();
+        return usr;
+    }
+
+    @Override
+    public User getUserByLogin(String login) {
+        EntityManager em = entityManagerFactory.createEntityManager();
+        em.getTransaction();
+
+        TypedQuery<User> query = em.createQuery("SELECT user FROM User user WHERE user.login=:l", User.class);
+        query.setParameter("l", login);
+        User usr = query.getSingleResult();
 
         em.getTransaction().commit();
         return usr;
@@ -79,10 +93,10 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void cleanUsersTable() {
         EntityManager em = entityManagerFactory.createEntityManager();
-        em.getTransaction().begin();
+//        em.getTransaction().begin();
 
         em.createQuery("DELETE FROM User").executeUpdate();
 
-        em.getTransaction().commit();
+//        em.getTransaction().commit();
     }
 }
