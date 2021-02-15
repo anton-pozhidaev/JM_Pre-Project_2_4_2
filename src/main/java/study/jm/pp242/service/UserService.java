@@ -16,6 +16,8 @@ public interface UserService {
 
     List<User> listUsers();
 
+    User findUserByUsername(String login);
+
     void cleanUsersTable();
 
     void addInitUsersToDB();

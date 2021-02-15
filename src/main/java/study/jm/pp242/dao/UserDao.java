@@ -10,7 +10,7 @@ public interface UserDao {
 
     User get(long id);
 
-    User getUserByLogin(String login);
+    User findUserByLogin(String login);
 
     void update(long id, User updatedUser);
 

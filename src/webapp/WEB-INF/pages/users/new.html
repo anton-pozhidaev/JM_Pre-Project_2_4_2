@@ -5,9 +5,11 @@
     <title>Add new user</title>
 </head>
 <body>
-
+<form th:method="GET" th:action="@{/logout}">
+    <input type="submit" value="LOGOUT"/>
+</form>
 <h2>Adding data for new user</h2>
-<form th:method="POST" th:action="@{/users}" th:object="${user}">
+<form th:method="POST" th:action="@{/admin/}" th:object="${user}">
     <table border="0" style="width:10%">
         <tr>
             <td/>

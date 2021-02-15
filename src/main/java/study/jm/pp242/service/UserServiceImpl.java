@@ -23,20 +23,21 @@ public class UserServiceImpl implements UserService {
     @Override
     public void addInitUsersToDB() {
         List<User> initUsersList = new ArrayList<>();
-        Set<Role> userRoleOnly = Collections.singleton(new Role("ROLE_USER"));
+        Set<Role> userRole = Collections.singleton(new Role("ROLE_USER"));
         Set<Role> userAndAdminRoles = new HashSet<>(Arrays.asList(new Role("ROLE_USER"), new Role ("ROLE_ADMIN")));
 
         userDao.cleanUsersTable();
+
         initUsersList.add(new User("Vladimir", "Putin", "putya@mainbunker.ru", "13-12-19xx", "USSR, Popamira 123"
-                , "vvp", "{bcrypt}$2y$12$./Fk/mWc49gs0xdJjazB4.DSmaI7K79/mVcXQcR3QPY2gQrzsiGNu", userAndAdminRoles));
+                , "vvp", "$2y$12$./Fk/mWc49gs0xdJjazB4.DSmaI7K79/mVcXQcR3QPY2gQrzsiGNu", userAndAdminRoles));
         initUsersList.add(new User("Dmitriy", "Peskov", "pesok@kremlin.ru", "13-12-19xx", "USSR, Popamira 456"
-                , "pesok", "{bcrypt}$2y$12$./Fk/mWc49gs0xdJjazB4.DSmaI7K79/mVcXQcR3QPY2gQrzsiGNu", userRoleOnly));
+                , "pesok", "$2y$12$./Fk/mWc49gs0xdJjazB4.DSmaI7K79/mVcXQcR3QPY2gQrzsiGNu", userRole));
         initUsersList.add(new User("Uasya", "Vatnikov", "vata@mail.ru", "13-12-19xx", "USSR, Popamira 789"
-                , "vata", "{bcrypt}$2y$12$./Fk/mWc49gs0xdJjazB4.DSmaI7K79/mVcXQcR3QPY2gQrzsiGNu", userRoleOnly));
+                , "vata", "$2y$12$./Fk/mWc49gs0xdJjazB4.DSmaI7K79/mVcXQcR3QPY2gQrzsiGNu", userRole));
         initUsersList.add(new User("Alexey", "Navalniy", "leha@better-future.ru", "13-12-19xx", "USSR, Moscow"
-                , "leha", "{bcrypt}$2y$12$./Fk/mWc49gs0xdJjazB4.DSmaI7K79/mVcXQcR3QPY2gQrzsiGNu", userAndAdminRoles));
+                , "leha", "$2y$12$./Fk/mWc49gs0xdJjazB4.DSmaI7K79/mVcXQcR3QPY2gQrzsiGNu", userAndAdminRoles));
         initUsersList.add(new User("Vladimir", "Solovyov", "pomet@trash.ru", "13-12-19xx", "USSR, Popamira 666"
-                , "pomet", "{bcrypt}$2y$12$./Fk/mWc49gs0xdJjazB4.DSmaI7K79/mVcXQcR3QPY2gQrzsiGNu", userRoleOnly));
+                , "pomet", "$2y$12$./Fk/mWc49gs0xdJjazB4.DSmaI7K79/mVcXQcR3QPY2gQrzsiGNu", userRole));
         for (User user : initUsersList) {
             userDao.add(user);
         }
@@ -70,6 +71,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> listUsers() {
         return userDao.listUsers();
+    }
+
+    @Transactional
+    @Override
+    public User findUserByUsername(String login) {
+        return userDao.findUserByLogin(login);
     }
 
     @Transactional

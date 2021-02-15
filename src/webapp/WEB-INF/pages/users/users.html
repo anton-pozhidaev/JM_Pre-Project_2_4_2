@@ -6,9 +6,22 @@
 </head>
 <body>
 <h1>Users of those mysterious company</h1>
-<h3>
-    <a th:href="@{/users/new}">Add new user</a>
-</h3>
+<table border="0">
+    <tr>
+        <th>
+            <form th:method="GET" th:action="@{/admin/new}">
+                <input type="submit" value="ADD NEW"/>
+            </form>
+        </th>
+
+        <th>
+            <form th:method="GET" th:action="@{/logout}">
+                <input type="submit" value="LOGOUT"/>
+            </form>
+        </th>
+    </tr>
+</table>
+<br>
 <table border="1">
     <tr>
         <th>No</th>
@@ -25,20 +38,21 @@
         <td th:utext="${user.lastName}"></td>
         <td th:utext="${user.email}"></td>
         <td>
-            <form th:method="GET" th:action="@{/users/{id}(id=${user.id})}">
+            <form th:method="GET" th:action="@{/user/id{id}(id=${user.id})}">
                 <input type="submit" value="Details">
             </form>
         </td>
         <td>
-            <form th:method="GET" th:action="@{/users/{id}/edit(id=${user.id})}">
+            <form th:method="GET" th:action="@{/admin/id{id}/edit(id=${user.id})}">
                 <input type="submit" value="Edit">
             </form>
         <td>
-            <form th:method="DELETE" th:action="@{/users/{id}(id=${user.id})}">
+            <form th:method="DELETE" th:action="@{/admin/id{id}(id=${user.id})}">
                 <input type="submit" value="Delete"/>
             </form>
         </td>
     </tr>
 </table>
+
 </body>
 </html>

@@ -5,11 +5,15 @@
     <title>User details</title>
 </head>
 <body>
-
+<form th:method="GET" th:action="@{/logout}">
+    <input type="submit" value="LOGOUT"/>
+</form>
+<br>
 <p th:text="${usr.getId()}"></p>
 <p th:text="${usr.getFirstName()}"></p>
 <p th:text="${usr.getLastName()}"></p>
 <p th:text="${usr.getEmail()}"></p>
+<p th:text="${usr.login}"></p>
 <p th:text="${usr.birthday}"></p>
 <p th:text="${usr.address}"></p>
 <br>

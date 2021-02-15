@@ -5,9 +5,11 @@
     <title>Update user's data</title>
 </head>
 <body>
-
+<form th:method="GET" th:action="@{/logout}">
+    <input type="submit" value="LOGOUT"/>
+</form>
 <h2>Update data of user</h2>
-<form th:method="PATCH" th:action="@{/users/{id}(id=${user.id})}" th:object="${user}">
+<form th:method="PATCH" th:action="@{/admin/id{id}(id=${user.id})}" th:object="${user}">
     <table border="0" style="width:10%">
         <tr>
             <td/>
