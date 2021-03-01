@@ -14,7 +14,6 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import javax.persistence.EntityManager;
 import javax.sql.DataSource;
 import java.util.Properties;
 
@@ -23,8 +22,12 @@ import java.util.Properties;
 @EnableTransactionManagement
 public class JPAConfig {
 
-    @Autowired
     private Environment env;
+
+    @Autowired
+    public JPAConfig(Environment env) {
+        this.env = env;
+    }
 
     @Bean
     public LocalContainerEntityManagerFactoryBean getEntityManagerFactory() {

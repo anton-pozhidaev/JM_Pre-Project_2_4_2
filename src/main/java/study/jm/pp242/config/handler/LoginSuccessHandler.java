@@ -19,7 +19,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
     private UserService userService;
 
     @Autowired
-    public void setUserService(UserService userService) {
+    public LoginSuccessHandler(UserService userService) {
         this.userService = userService;
     }
 

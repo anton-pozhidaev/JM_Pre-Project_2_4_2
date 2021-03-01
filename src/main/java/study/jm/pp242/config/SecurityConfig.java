@@ -47,11 +47,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/login?logout")
                 .and().csrf().disable();
 
-        http
-                .authorizeRequests()
+        http.authorizeRequests()
                 .antMatchers("/login").anonymous()
                 .antMatchers("/").authenticated()
-                .antMatchers("/admin/**").hasRole("ADMIN") //.anyRequest().authenticated()
+                .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/user").access("hasAnyRole('USER', 'ADMIN')");
     }
 

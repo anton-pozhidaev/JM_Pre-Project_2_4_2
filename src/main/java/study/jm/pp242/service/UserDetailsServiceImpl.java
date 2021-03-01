@@ -1,5 +1,6 @@
 package study.jm.pp242.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -11,8 +12,10 @@ import study.jm.pp242.model.User;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
+
     private final UserDao userDao;
 
+    @Autowired
     public UserDetailsServiceImpl(UserDao userDao) {
         this.userDao = userDao;
     }
