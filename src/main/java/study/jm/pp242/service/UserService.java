@@ -10,15 +10,13 @@ public interface UserService {
 
     User get(long id);
 
-    void update(long id, User updatedUser);
+    void update(User updatedUser);
 
     void delete(long id);
 
     List<User> listUsers();
 
     User findUserByUsername(String login);
-
-    void cleanUsersTable();
 
     void addInitUsersToDB();
 }

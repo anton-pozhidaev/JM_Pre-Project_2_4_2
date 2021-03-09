@@ -1,4 +1,4 @@
-package study.jm.pp242.config;
+package study.jm.pp242.security;
 
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 

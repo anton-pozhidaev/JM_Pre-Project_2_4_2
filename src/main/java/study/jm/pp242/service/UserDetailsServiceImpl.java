@@ -20,8 +20,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         this.userDao = userDao;
     }
 
-    @Override
     @Transactional
+    @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
         User user = userDao.findUserByLogin(login);
         if (user == null) {

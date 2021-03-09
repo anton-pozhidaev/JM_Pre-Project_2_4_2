@@ -38,7 +38,7 @@ public class User implements UserDetails {
     @Column(name = "password")
     private String password;
 
-    @ManyToMany(cascade = CascadeType.PERSIST)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinTable(name = "users_roles",
     joinColumns = @JoinColumn(name = "user_id"),
     inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -48,18 +48,14 @@ public class User implements UserDetails {
     }
 
     public User(String firstName, String lastName, String email, String birthday, String address, String login, String password, Set<Role> roles) {
-        this(firstName, lastName, email, birthday, address);
-        this.login = login;
-        this.password = password;
-        this.roles = roles;
-    }
-
-    public User(String firstName, String lastName, String email, String birthday, String address) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.birthday = birthday;
         this.address = address;
+        this.login = login;
+        this.password = password;
+        this.roles = roles;
     }
 
     public Long getId() {
@@ -98,7 +94,7 @@ public class User implements UserDetails {
         this.password = password;
     }
 
-    public Collection<Role> getRoles() {
+    public Set<Role> getRoles() {
         return roles;
     }
 

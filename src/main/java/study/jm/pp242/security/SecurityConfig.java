@@ -1,4 +1,4 @@
-package study.jm.pp242.config;
+package study.jm.pp242.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -12,7 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import study.jm.pp242.config.handler.LoginSuccessHandler;
+import study.jm.pp242.security.handler.LoginSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -50,12 +50,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/login").anonymous()
                 .antMatchers("/").authenticated()
+                .antMatchers("/hello").authenticated()
                 .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/user").access("hasAnyRole('USER', 'ADMIN')");
+                .antMatchers("/user/**").access("hasAnyRole('USER', 'ADMIN')");
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-          return new BCryptPasswordEncoder();
+          return new BCryptPasswordEncoder(12);
     }
 }

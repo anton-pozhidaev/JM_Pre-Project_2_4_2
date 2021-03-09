@@ -13,13 +13,22 @@
 <p th:text="${usr.getFirstName()}"></p>
 <p th:text="${usr.getLastName()}"></p>
 <p th:text="${usr.getEmail()}"></p>
-<p th:text="${usr.login}"></p>
 <p th:text="${usr.birthday}"></p>
 <p th:text="${usr.address}"></p>
-<br>
+<p th:text="${usr.login}"></p>
+<p th:text="${usr.roles}"></p>
+
+<!--
+<th:block th:each="role : ${usr.roles}">
+    <span style="color:darkorange" th:utext="${role.role} "></span><br/>
+</th:block>
+-->
+
+
 <!--<a th:href="@{/users}">Back to all Users</a>-->
 <h3>
-    <a th:href="@{/}">link to home page</a>
+    <!--    <a th:href="@{/hello?id={id}(id=${usr.id})}">link to home page</a>-->
+    <a th:href="@{/hello}">link to home page</a>
 </h3>
 </body>
 </html>

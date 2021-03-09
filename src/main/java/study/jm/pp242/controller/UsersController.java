@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import study.jm.pp242.model.User;
 import study.jm.pp242.service.UserService;
 
+import java.security.Principal;
+
 @Controller
 @RequestMapping("/user")
 public class UsersController {
@@ -18,9 +20,9 @@ public class UsersController {
         this.userService = userService;
     }
 
-    @GetMapping("/id{id}")
-    public String show(@PathVariable("id") long id, Model model) {
-        model.addAttribute("usr", userService.get(id));
+    @GetMapping
+    public String showWithoutId(Model model, Principal principal) {
+        model.addAttribute("usr", userService.findUserByUsername(principal.getName()));
         return "users/show";
     }
 }
